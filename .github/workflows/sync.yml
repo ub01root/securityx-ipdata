@@ -1,0 +1,86 @@
+name: Daily IP data sync
+
+on:
+  schedule:
+    # 02:00 UTC daily — upstream lists refresh in the early hours.
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['sync.mjs', '.github/workflows/sync.yml']
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ip-data-sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Build lists
+        run: node sync.mjs --out=out
+
+      - name: Summarize
+        run: |
+          {
+            echo '### Range counts'
+            echo '| file | ranges | invalid skipped |'
+            echo '| --- | --- | --- |'
+            node -e "const m=require('./out/manifest.json');for(const [f,i] of Object.entries(m.files)){if(f==='manifest.json')continue;console.log('| '+f+' | '+i.lines+' | '+(i.invalidLines||0)+' |')}"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # Fail loudly instead of publishing an empty or partial dataset: every
+      # expected list must exist, and a run that lost more than half of any
+      # list is treated as an upstream incident, not a normal diff.
+      - name: Validate
+        run: |
+          set -euo pipefail
+          for f in vpn-ipv4 vpn-ipv6 datacenter-ipv4 datacenter-ipv6 proxy-ipv4 proxy-ipv6 tor-ipv4 tor-ipv6 webhost-ipv4 webhost-ipv6; do
+            test -f "out/$f.txt" || { echo "missing out/$f.txt"; exit 1; }
+            echo "$(wc -l < "out/$f.txt") $f"
+          done
+          node -e '
+            const fs = require("fs");
+            const m = JSON.parse(fs.readFileSync("out/manifest.json", "utf8"));
+            if (!fs.existsSync("prev.json")) { console.log("no prev.json, skipping regression check"); process.exit(0); }
+            const prev = JSON.parse(fs.readFileSync("prev.json", "utf8"));
+            let bad = 0;
+            for (const [f, i] of Object.entries(m.files)) {
+              if (f === "manifest.json") continue;
+              const before = prev.files?.[f]?.lines;
+              if (typeof before !== "number" || before < 100) continue;
+              if (i.lines < before * 0.5) { console.error(`REGRESSION ${f}: ${before} -> ${i.lines}`); bad += 1; }
+            }
+            if (bad) process.exit(1);
+          '
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="data-$(date -u +%Y.%m.%d)"
+          notes=$(node -e "const m=require('./out/manifest.json');console.log('generated: '+m.generatedAt+'\n\n'+Object.entries(m.files).filter(([f])=>f!=='manifest.json').map(([f,i])=>'- '+f+': '+i.lines+' ranges').join('\n'))")
+          gh release create "$tag" out/*.txt out/manifest.json --title "$tag" --notes "$notes" --latest
+          echo "published $tag"
+
+      - name: Record manifest
+        run: |
+          set -euo pipefail
+          day=$(date -u +%Y.%m.%d)
+          git config user.name  'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          mkdir -p history
+          cp out/manifest.json "history/manifest-$day.json"
+          cp out/manifest.json prev.json
+          git add prev.json history
+          git commit -m "chore: ip data manifest for $day" || echo 'nothing to commit'
+          git push

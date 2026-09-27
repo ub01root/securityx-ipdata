@@ -1,0 +1,14 @@
+{
+  "name": "securityx-ipdata",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Self-hosted IP block lists (vpn, datacenter, proxy, tor, webhost) for securityx-guard",
+  "type": "module",
+  "scripts": {
+    "sync": "node sync.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT"
+}
