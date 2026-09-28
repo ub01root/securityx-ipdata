@@ -1,0 +1,25 @@
+# Curated proxy-vendor ASNs
+#
+# Autonomous Systems whose business is selling proxy/VPN egress, or that are
+# documented as bulletproof/grey hosting. Deliberately NOT the same thing as
+# the generic `datacenter` category: "this IP sits in a cloud range" is weak
+# evidence, "this IP sits in a proxy reseller's ASN" is strong.
+#
+# Consumed by securityx-guard as the opt-in `proxy-asn` category:
+#   https://github.com/ub01root/securityx-ipdata/releases/latest/download/proxy-asns.txt
+#
+# Format: one ASN per line, written as `AS<number>`. `#` starts a comment.
+# Holder names verified against RIPEstat (stat.ripe.net as-overview).
+#
+# Policy for adding entries:
+#   - Add an ASN only if the operator publicly sells proxy/VPN egress, or is
+#     documented as bulletproof/grey hosting.
+#   - Do NOT add generic datacenters (AWS, Hetzner, OVH, Contabo, DigitalOcean,
+#     ...). They carry legitimate traffic and would be mass false positives.
+#   - Prefer a narrow list. 20 vendors we are sure about beats 500 we guessed.
+#
+AS62610   # ZEN-DPS - Zenlayer Inc (zanlayer.com)
+AS9009    # M247 M247 Europe SRL
+AS202425  # INT-NETWORK - IP Volume inc
+AS49981   # WorldStream B.V.
+AS60068   # CDN77 - Datacamp Limited

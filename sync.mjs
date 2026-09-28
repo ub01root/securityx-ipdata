@@ -10,7 +10,7 @@
 //
 // No dependencies: runs on stock Node 20+. Sources are fetched with fetch().
 
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
 const OUT_DIR = (() => {
@@ -35,6 +35,14 @@ const X4B_SOURCES = [
   { file: 'vpn-ipv6.txt', url: `${X4B_RAW}/vpn/ipv6.txt` },
   { file: 'datacenter-ipv4.txt', url: `${X4B_RAW}/datacenter/ipv4.txt` },
   { file: 'datacenter-ipv6.txt', url: `${X4B_RAW}/datacenter/ipv6.txt` },
+];
+
+// Human-curated lists, copied through verbatim. They have no upstream to
+// fetch, but they ship in the same release so the guard has exactly one
+// refresh URL per dataset. `minEntries` is a regression guard: a truncated or
+// mangled file fails the run instead of silently emptying a blocklist.
+const CURATED_FILES = [
+  { src: 'curated/proxy-asns.txt', out: 'proxy-asns.txt', minEntries: 1 },
 ];
 
 async function fetchText(url) {
@@ -200,6 +208,35 @@ async function main() {
       invalidLines: entry.invalid,
       contributors: entry.contributors,
     };
+  }
+
+  for (const file of CURATED_FILES) {
+    const text = await readFile(file.src, 'utf8');
+    // Keep the whole line, comment included: the consumer stores the note as
+    // the ASN's attribution, so stripping it would leave hits as bare "AS62610".
+    const seen = new Set();
+    const kept = [];
+    for (const raw of text.split(/\r?\n/)) {
+      const line = raw.trim();
+      if (!line || line.startsWith('#')) continue;
+      const token = line.replace(/#.*$/, '').trim();
+      if (!/^AS\d{1,10}$/i.test(token)) continue;
+      const key = token.toUpperCase();
+      if (seen.has(key)) continue;
+      seen.add(key);
+      kept.push(line);
+    }
+    if (kept.length < file.minEntries) {
+      throw new Error(
+        `${file.src}: only ${kept.length} valid ASN entries (need >= ${file.minEntries})`,
+      );
+    }
+    await writeFile(join(OUT_DIR, file.out), `${kept.join('\n')}\n`);
+    manifest.files[file.out] = {
+      lines: kept.length,
+      contributors: [file.src],
+    };
+    console.log(`curated ${file.out}: ${kept.length} entries`);
   }
 
   manifest.files['manifest.json'] = { generatedAt: manifest.generatedAt };

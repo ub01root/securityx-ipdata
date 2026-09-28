@@ -18,6 +18,7 @@ publishes it as a release, and records the manifest in `history/`.
 | `tor-ipv4.txt`, `tor-ipv6.txt` | tor | NetworkCats/OpenProxyDB | CC0-1.0 |
 | `webhost-ipv4.txt`, `webhost-ipv6.txt` | datacenter | NetworkCats/OpenProxyDB `webhost` column | CC0-1.0 |
 | `cdn-ipv4.txt`, `cdn-ipv6.txt` | — (published, not consumed yet) | NetworkCats/OpenProxyDB `cdn` column | CC0-1.0 |
+| `proxy-asns.txt` | proxy-asn | curated (`curated/proxy-asns.txt`) | — |
 | `manifest.json` | — | generated | — |
 
 Contributions are **unioned, never replaced**: a category present in two
@@ -28,6 +29,12 @@ records the per-file v4/v6 split and which sources fed each file.
 Private Relay, Mullvad, PIA and ProtonVPN. `proxy`/`tor`/`webhost` come from
 OpenProxyDB, a daily crawl of Wikipedia's proxy-related block lists — treat
 `webhost` as noisier than `datacenter`.
+
+`proxy-asns.txt` is the odd one out: it is not ranges but origin AS numbers,
+maintained by hand in `curated/proxy-asns.txt` as `AS<number>   # note`, one per
+line. It backs the Guard's `proxy-asn` category, which catches proxy pools that
+rotate inside a reseller's announcement — the range feeds cannot see those.
+Curated, not scraped: a vendor has to be added deliberately.
 
 Related upstream datasets (kept in mind for future categories):
 [NetworkCats/IPinfoLite-Download](https://github.com/NetworkCats/IPinfoLite-Download),
