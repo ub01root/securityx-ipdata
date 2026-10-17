@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-16T06:56:57.329Z",
+  "generatedAt": "2026-10-17T06:47:46.011Z",
   "generator": "securityx-ipdata sync.mjs",
   "sources": [
     {
       "url": "https://raw.githubusercontent.com/X4BNet/lists_vpn/main/output/vpn/ipv4.txt",
       "status": 200,
-      "bytes": 181238,
-      "etag": "W/\"99616a52799eb443d6d2fe26fa77701fd7e518a6af01abf1f91311ee32cb0a11\"",
+      "bytes": 181897,
+      "etag": "W/\"64b6b110d8c47f0523e390de0d64e07730c46f84a891f34cee5282cb7df3d0fe\"",
       "lastModified": null,
       "invalidLines": 0
     },
@@ -21,8 +21,8 @@
     {
       "url": "https://raw.githubusercontent.com/X4BNet/lists_vpn/main/output/datacenter/ipv4.txt",
       "status": 200,
-      "bytes": 694327,
-      "etag": "W/\"cdea37f24dc6dd20999789c69c83baa72a48d099cb9885e0dcd1f02d55344b76\"",
+      "bytes": 695305,
+      "etag": "W/\"51dd0f4a899303f75f16161050c27011987a2089d1c808a5959ba8ae2b036ab5\"",
       "lastModified": null,
       "invalidLines": 0
     },
@@ -37,16 +37,16 @@
     {
       "url": "https://github.com/NetworkCats/OpenProxyDB/releases/latest/download/proxy_blocks.csv",
       "status": 200,
-      "bytes": 4359196,
-      "etag": "\"0x8DF2B400C4F4848\"",
-      "lastModified": "Fri, 16 Oct 2026 04:43:39 GMT",
+      "bytes": 4359483,
+      "etag": "\"0x8DF2C08DBD30984\"",
+      "lastModified": "Sat, 17 Oct 2026 04:41:06 GMT",
       "invalidLines": 0
     }
   ],
   "files": {
     "vpn-ipv4.txt": {
-      "lines": 14083,
-      "ipv4": 14083,
+      "lines": 14116,
+      "ipv4": 14116,
       "ipv6": 0,
       "invalidLines": 0,
       "contributors": [
@@ -65,8 +65,8 @@
       ]
     },
     "datacenter-ipv4.txt": {
-      "lines": 44381,
-      "ipv4": 44381,
+      "lines": 44443,
+      "ipv4": 44443,
       "ipv6": 0,
       "invalidLines": 0,
       "contributors": [
@@ -83,8 +83,8 @@
       ]
     },
     "proxy-ipv4.txt": {
-      "lines": 47344,
-      "ipv4": 47344,
+      "lines": 47351,
+      "ipv4": 47351,
       "ipv6": 0,
       "invalidLines": 0,
       "contributors": [
@@ -101,8 +101,8 @@
       ]
     },
     "tor-ipv4.txt": {
-      "lines": 96,
-      "ipv4": 96,
+      "lines": 97,
+      "ipv4": 97,
       "ipv6": 0,
       "invalidLines": 0,
       "contributors": [
@@ -161,7 +161,7 @@
       ]
     },
     "manifest.json": {
-      "generatedAt": "2026-10-16T06:56:57.329Z"
+      "generatedAt": "2026-10-17T06:47:46.011Z"
     }
   }
 }
