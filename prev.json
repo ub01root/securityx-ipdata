@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-23T07:16:55.225Z",
+  "generatedAt": "2026-10-24T07:05:23.596Z",
   "generator": "securityx-ipdata sync.mjs",
   "sources": [
     {
       "url": "https://raw.githubusercontent.com/X4BNet/lists_vpn/main/output/vpn/ipv4.txt",
       "status": 200,
-      "bytes": 179551,
-      "etag": "W/\"4fc5a30b3aa188de0fc85e1ceb4e9300437b23845896626610b6675164aa44a7\"",
+      "bytes": 179586,
+      "etag": "W/\"bde41b8dcf5dbc767c865c20bfe4d1e1911960e8688b4414c2447aff4ae8cb60\"",
       "lastModified": null,
       "invalidLines": 0
     },
@@ -21,8 +21,8 @@
     {
       "url": "https://raw.githubusercontent.com/X4BNet/lists_vpn/main/output/datacenter/ipv4.txt",
       "status": 200,
-      "bytes": 697708,
-      "etag": "W/\"1f0478ef40a6ac0375087804d788a0a235c26109330fd68a54fdaf8c8234ac56\"",
+      "bytes": 697801,
+      "etag": "W/\"0357b15e593d700457d756be666119951eb9dcde99d5f52cf0e15bea7089d3ef\"",
       "lastModified": null,
       "invalidLines": 0
     },
@@ -45,8 +45,8 @@
   ],
   "files": {
     "vpn-ipv4.txt": {
-      "lines": 14010,
-      "ipv4": 14010,
+      "lines": 14014,
+      "ipv4": 14014,
       "ipv6": 0,
       "invalidLines": 0,
       "contributors": [
@@ -65,8 +65,8 @@
       ]
     },
     "datacenter-ipv4.txt": {
-      "lines": 44597,
-      "ipv4": 44597,
+      "lines": 44603,
+      "ipv4": 44603,
       "ipv6": 0,
       "invalidLines": 0,
       "contributors": [
@@ -161,7 +161,7 @@
       ]
     },
     "manifest.json": {
-      "generatedAt": "2026-10-23T07:16:55.225Z"
+      "generatedAt": "2026-10-24T07:05:23.596Z"
     }
   }
 }
