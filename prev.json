@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-10-30T08:24:44.482Z",
+  "generatedAt": "2026-10-31T08:14:42.312Z",
   "generator": "securityx-ipdata sync.mjs",
   "sources": [
     {
       "url": "https://raw.githubusercontent.com/X4BNet/lists_vpn/main/output/vpn/ipv4.txt",
       "status": 200,
-      "bytes": 180492,
-      "etag": "W/\"b41cf28189ac6ed11728af343029d6b5264e4c9f99eabb1187113dac5b137ca4\"",
+      "bytes": 180280,
+      "etag": "W/\"7e13acd805428ec755ab8879db4b2deec3a22332a859ef8b4de3939182576b1e\"",
       "lastModified": null,
       "invalidLines": 0
     },
@@ -21,32 +21,32 @@
     {
       "url": "https://raw.githubusercontent.com/X4BNet/lists_vpn/main/output/datacenter/ipv4.txt",
       "status": 200,
-      "bytes": 697010,
-      "etag": "W/\"760b03a6829acab17939246d0e485939e399f87d3310439043e9621ac2206c29\"",
+      "bytes": 697687,
+      "etag": "W/\"e3da72f9f3c6bf65091f0383d0153bfe6d395681795506e50e90f87c99572ee9\"",
       "lastModified": null,
       "invalidLines": 0
     },
     {
       "url": "https://raw.githubusercontent.com/X4BNet/lists_vpn/main/output/datacenter/ipv6.txt",
       "status": 200,
-      "bytes": 143882,
-      "etag": "W/\"ad75f68174fe28971e2d4b693ee379c267f94b9cfe8c4abe9a846ec8c5cc7f79\"",
+      "bytes": 144147,
+      "etag": "W/\"13a2c7f6a2bbeeb238c20d924974d3f07e789949f1cfeee3dfef7fddad87cf21\"",
       "lastModified": null,
       "invalidLines": 0
     },
     {
       "url": "https://github.com/NetworkCats/OpenProxyDB/releases/latest/download/proxy_blocks.csv",
       "status": 200,
-      "bytes": 4371607,
-      "etag": "\"0x8DF364B41DED8A0\"",
-      "lastModified": "Fri, 30 Oct 2026 06:01:36 GMT",
+      "bytes": 4370453,
+      "etag": "\"0x8DF3713D623A165\"",
+      "lastModified": "Sat, 31 Oct 2026 05:57:24 GMT",
       "invalidLines": 0
     }
   ],
   "files": {
     "vpn-ipv4.txt": {
-      "lines": 14030,
-      "ipv4": 14030,
+      "lines": 13994,
+      "ipv4": 13994,
       "ipv6": 0,
       "invalidLines": 0,
       "contributors": [
@@ -65,8 +65,8 @@
       ]
     },
     "datacenter-ipv4.txt": {
-      "lines": 44500,
-      "ipv4": 44500,
+      "lines": 44542,
+      "ipv4": 44542,
       "ipv6": 0,
       "invalidLines": 0,
       "contributors": [
@@ -74,17 +74,17 @@
       ]
     },
     "datacenter-ipv6.txt": {
-      "lines": 8012,
+      "lines": 8025,
       "ipv4": 0,
-      "ipv6": 8012,
+      "ipv6": 8025,
       "invalidLines": 0,
       "contributors": [
         "https://raw.githubusercontent.com/X4BNet/lists_vpn/main/output/datacenter/ipv6.txt"
       ]
     },
     "proxy-ipv4.txt": {
-      "lines": 47653,
-      "ipv4": 47653,
+      "lines": 47642,
+      "ipv4": 47642,
       "ipv6": 0,
       "invalidLines": 0,
       "contributors": [
@@ -92,17 +92,17 @@
       ]
     },
     "proxy-ipv6.txt": {
-      "lines": 9503,
+      "lines": 9505,
       "ipv4": 0,
-      "ipv6": 9503,
+      "ipv6": 9505,
       "invalidLines": 0,
       "contributors": [
         "https://github.com/NetworkCats/OpenProxyDB/releases/latest/download/proxy_blocks.csv#proxy.ipv6"
       ]
     },
     "tor-ipv4.txt": {
-      "lines": 93,
-      "ipv4": 93,
+      "lines": 92,
+      "ipv4": 92,
       "ipv6": 0,
       "invalidLines": 0,
       "contributors": [
@@ -119,8 +119,8 @@
       ]
     },
     "webhost-ipv4.txt": {
-      "lines": 22201,
-      "ipv4": 22201,
+      "lines": 22202,
+      "ipv4": 22202,
       "ipv6": 0,
       "invalidLines": 0,
       "contributors": [
@@ -128,9 +128,9 @@
       ]
     },
     "webhost-ipv6.txt": {
-      "lines": 3406,
+      "lines": 3405,
       "ipv4": 0,
-      "ipv6": 3406,
+      "ipv6": 3405,
       "invalidLines": 0,
       "contributors": [
         "https://github.com/NetworkCats/OpenProxyDB/releases/latest/download/proxy_blocks.csv#webhost.ipv6"
@@ -161,7 +161,7 @@
       ]
     },
     "manifest.json": {
-      "generatedAt": "2026-10-30T08:24:44.482Z"
+      "generatedAt": "2026-10-31T08:14:42.312Z"
     }
   }
 }
