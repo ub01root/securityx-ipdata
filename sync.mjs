@@ -144,6 +144,71 @@ function sorted(set) {
   return [...set].sort();
 }
 
+// Vendor feeds: direct, authoritative exit-IP data from the VPN providers
+// themselves. Each vendor becomes its own output list (and its own provider
+// in the guard, for attribution). They are NOT merged into vpn-*.txt: the
+// X4BNet ∪ OpenProxyDB union keeps its existing semantics.
+const NORD_URL = 'https://api.nordvpn.com/v1/servers?limit=99999';
+const PIA_URL = 'https://serverlist.piaservers.net/vpninfo/servers/v6?format=json';
+
+function parseNordServers(text) {
+  const ipv4 = new Set();
+  const ipv6 = new Set();
+  let invalid = 0;
+  const arr = JSON.parse(text);
+  if (!Array.isArray(arr)) {
+    throw new Error('nordvpn: expected a JSON array');
+  }
+
+  for (const server of arr) {
+    const station = (server?.station ?? '').trim();
+    const v6 = (server?.ipv6_station ?? '').trim();
+
+    if (station) {
+      if (classify(station) === 4) ipv4.add(station);
+      else invalid += 1;
+    }
+    if (v6 && classify(v6) === 6) ipv6.add(v6);
+  }
+
+  return { ipv4, ipv6, invalid };
+}
+
+// PIA appends an RSA signature block after the JSON payload (two newlines,
+// then base64). We do not verify it — same trust level as every other
+// upstream — but we do note its presence in the manifest for later audits.
+function parsePiaServers(text) {
+  const cut = text.indexOf('\n\n');
+  const jsonPart = cut >= 0 ? text.slice(0, cut) : text;
+  const signature = cut >= 0 ? 'present' : 'missing';
+
+  const data = JSON.parse(jsonPart);
+  const ipv4 = new Set();
+  let invalid = 0;
+
+  const regions = data?.regions ?? [];
+  for (const region of regions) {
+    const groups = region?.servers ?? {};
+    for (const group of Object.values(groups)) {
+      for (const server of group) {
+        const ip = (server?.ip ?? '').trim();
+        if (!ip) continue;
+        if (classify(ip) === 4) ipv4.add(ip);
+        else invalid += 1;
+      }
+    }
+  }
+
+  return { ipv4, ipv6: new Set(), invalid, signature };
+}
+
+// Kind of the same contract as X4B_SOURCES: fetch + parse + write one file
+// per IP version, min entries enforced so a truncated upstream fails the run.
+const VENDOR_FEEDS = [
+  { id: 'nordvpn', url: NORD_URL, out: 'vpn-nordvpn', parse: parseNordServers, minEntries: 100 },
+  { id: 'pia', url: PIA_URL, out: 'vpn-pia', parse: parsePiaServers, minEntries: 100 },
+];
+
 async function main() {
   await mkdir(OUT_DIR, { recursive: true });
   const manifest = {
@@ -197,6 +262,37 @@ async function main() {
   for (const entry of merged.values()) entry.invalid += invalid;
   manifest.sources.push({ ...opdb.meta, invalidLines: invalid });
   console.log(`${opdbTotal} categorized ranges`);
+
+  for (const feed of VENDOR_FEEDS) {
+    process.stdout.write(`fetching ${feed.url} ... `);
+    const { text, meta } = await fetchText(feed.url);
+    const { ipv4, ipv6, invalid, signature } = feed.parse(text);
+
+    if (ipv4.size < feed.minEntries) {
+      throw new Error(
+        `${feed.id}: only ${ipv4.size} IPv4 entries (need >= ${feed.minEntries})`,
+      );
+    }
+
+    for (const [version, set] of [['ipv4', ipv4], ['ipv6', ipv6]]) {
+      const file = `${feed.out}-${version}.txt`;
+      const lines = sorted(set);
+      await writeFile(join(OUT_DIR, file), lines.length ? `${lines.join('\n')}\n` : '');
+      manifest.files[file] = {
+        lines: lines.length,
+        ipv4: ipv4.size,
+        ipv6: ipv6.size,
+        invalidLines: invalid,
+        contributors: [feed.url],
+        ...(signature ? { signature } : {}),
+      };
+    }
+
+    manifest.sources.push({ ...meta, invalidLines: invalid, ...(signature ? { signature } : {}) });
+    console.log(
+      `${ipv4.size} ipv4 / ${ipv6.size} ipv6 ranges${invalid ? ` (${invalid} invalid skipped)` : ''}`,
+    );
+  }
 
   for (const [file, entry] of merged) {
     const lines = sorted(entry.ipv4).concat(sorted(entry.ipv6));

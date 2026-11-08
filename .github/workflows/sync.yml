@@ -85,6 +85,10 @@ jobs:
           for f in \
             vpn-ipv4 \
             vpn-ipv6 \
+            vpn-nordvpn-ipv4 \
+            vpn-nordvpn-ipv6 \
+            vpn-pia-ipv4 \
+            vpn-pia-ipv6 \
             datacenter-ipv4 \
             datacenter-ipv6 \
             proxy-ipv4 \

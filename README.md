@@ -14,6 +14,8 @@ publishes it as a release, and records the manifest in `history/`.
 | Output | Category | Source | License |
 | --- | --- | --- | --- |
 | `vpn-ipv4.txt`, `vpn-ipv6.txt` | vpn | [X4BNet/lists_vpn](https://github.com/X4BNet/lists_vpn) `output/vpn/` **∪** OpenProxyDB `vpn` column | MIT + CC0-1.0 |
+| `vpn-nordvpn-ipv4.txt`, `vpn-nordvpn-ipv6.txt` | vpn (vendor) | NordVPN servers API (`api.nordvpn.com`) | public API |
+| `vpn-pia-ipv4.txt`, `vpn-pia-ipv6.txt` | vpn (vendor) | PIA server list (`serverlist.piaservers.net`, JSON; signature tracked in manifest but not verified) | public API |
 | `datacenter-ipv4.txt`, `datacenter-ipv6.txt` | datacenter | [X4BNet/lists_vpn](https://github.com/X4BNet/lists_vpn) `output/datacenter/` | MIT |
 | `proxy-ipv4.txt`, `proxy-ipv6.txt` | proxy | [NetworkCats/OpenProxyDB](https://github.com/NetworkCats/OpenProxyDB) | CC0-1.0 |
 | `tor-ipv4.txt`, `tor-ipv6.txt` | tor | NetworkCats/OpenProxyDB | CC0-1.0 |
@@ -25,6 +27,16 @@ publishes it as a release, and records the manifest in `history/`.
 Contributions are **unioned, never replaced**: a category present in two
 datasets (only `vpn` today) ends up as the union of both. `manifest.json`
 records the per-file v4/v6 split and which sources fed each file.
+
+Vendor feeds (`vpn-nordvpn-*`, `vpn-pia-*`) are published as their own files
+and registered as their own providers (`ipdata-vpn-nordvpn`, `ipdata-vpn-pia`)
+so the guard can attribute hits per vendor. They are not unioned into
+`vpn-*.txt`: X4BNet keeps its existing semantics.
+
+Notes on vendors with no public list we could consume: Mullvad exit IPs are
+already covered via X4BNet `lists_vpn`; Surfshark serves entry addresses
+encrypted; Windscribe has no public endpoint. If those change, add adapters
+as `VENDOR_FEEDS` in `sync.mjs`.
 
 `vpn`/`datacenter` come from X4BNet's `lists_vpn`, which already folds in Apple
 Private Relay, Mullvad, PIA and ProtonVPN. `proxy`/`tor`/`webhost` come from
