@@ -2,7 +2,7 @@
   "name": "securityx-ipdata",
   "version": "1.0.0",
   "private": true,
-  "description": "Self-hosted IP block lists (vpn, datacenter, proxy, tor, webhost) for securityx-guard",
+  "description": "Self-hosted IP block lists (vpn, datacenter, proxy, tor, webhost) for Guard SecurityX - System Anti-VPN Global",
   "type": "module",
   "scripts": {
     "sync": "node sync.mjs"

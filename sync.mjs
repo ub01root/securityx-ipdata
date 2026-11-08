@@ -18,7 +18,7 @@ const OUT_DIR = (() => {
   return arg ? arg.slice('--out='.length) : 'out';
 })();
 
-const USER_AGENT = 'securityx-ipdata/1.0 (+https://github.com/ub01root)';
+const USER_AGENT = 'GuardSecurityX-AntiVPN/2.0 (+https://github.com/ub01root/securityx-ipdata)';
 const TIMEOUT_MS = 120_000;
 const MAX_BYTES = 64 * 1024 * 1024;
 
@@ -148,7 +148,7 @@ async function main() {
   await mkdir(OUT_DIR, { recursive: true });
   const manifest = {
     generatedAt: new Date().toISOString(),
-    generator: 'securityx-ipdata sync.mjs',
+    generator: 'guard-securityx sync.mjs',
     sources: [],
     files: {},
   };

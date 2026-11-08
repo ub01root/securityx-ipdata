@@ -1,8 +1,9 @@
 # securityx-ipdata
 
-Self-hosted IP block lists for [securityx-guard](../securityx-guard). A daily
-GitHub Action merges open datasets into plain CIDR text files and publishes them
-as a release, so the guard never has to scrape anyone's website.
+Self-hosted IP block lists for [securityx-guard](../securityx-guard), the data
+pipeline of **Guard SecurityX - System Anti-VPN Global**. A daily GitHub Action
+merges open datasets into plain CIDR text files and publishes them as a release,
+so the guard never has to scrape anyone's website.
 
 ## How it works
 
