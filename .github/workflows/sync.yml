@@ -291,4 +291,9 @@ jobs:
             -m "chore: ip data manifest for $day" \
             || echo 'nothing to commit'
 
-          git push
+          # The checkout may lag behind main (other automation pushes);
+          # rebase our manifest commit onto the remote tip before pushing
+          # so the step does not fail on non-fast-forward.
+          git fetch origin main
+          git rebase origin/main
+          git push origin HEAD:main

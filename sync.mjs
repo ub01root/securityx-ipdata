@@ -277,7 +277,13 @@ async function main() {
     for (const [version, set] of [['ipv4', ipv4], ['ipv6', ipv6]]) {
       const file = `${feed.out}-${version}.txt`;
       const lines = sorted(set);
-      await writeFile(join(OUT_DIR, file), lines.length ? `${lines.join('\n')}\n` : '');
+      // GitHub does not like 0-byte release assets; the guard's txt parser
+      // skips comment lines, so an explanatory placeholder is equivalent to
+      // an empty list.
+      const body = lines.length
+        ? `${lines.join('\n')}\n`
+        : `# intentionally empty: ${feed.id} exposes no IPv${version === 'ipv4' ? '4' : '6'} addresses\n`;
+      await writeFile(join(OUT_DIR, file), body);
       manifest.files[file] = {
         lines: lines.length,
         ipv4: ipv4.size,
