@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-08T15:03:20.238Z",
+  "generatedAt": "2026-11-08T15:22:45.383Z",
   "generator": "guard-securityx sync.mjs",
   "sources": [
     {
@@ -41,9 +41,64 @@
       "etag": "\"0x8DF3D604B657C9C\"",
       "lastModified": "Sun, 08 Nov 2026 06:19:50 GMT",
       "invalidLines": 0
+    },
+    {
+      "url": "https://api.nordvpn.com/v1/servers?limit=99999",
+      "status": 200,
+      "bytes": 26560235,
+      "etag": null,
+      "lastModified": "Sun, 08 Nov 2026 15:22:47 GMT",
+      "invalidLines": 0
+    },
+    {
+      "url": "https://serverlist.piaservers.net/vpninfo/servers/v6?format=json",
+      "status": 200,
+      "bytes": 182404,
+      "etag": null,
+      "lastModified": "Sun, 08 Nov 2026 15:22:48 GMT",
+      "invalidLines": 0,
+      "signature": "present"
     }
   ],
   "files": {
+    "vpn-nordvpn-ipv4.txt": {
+      "lines": 7063,
+      "ipv4": 7063,
+      "ipv6": 0,
+      "invalidLines": 0,
+      "contributors": [
+        "https://api.nordvpn.com/v1/servers?limit=99999"
+      ]
+    },
+    "vpn-nordvpn-ipv6.txt": {
+      "lines": 0,
+      "ipv4": 7063,
+      "ipv6": 0,
+      "invalidLines": 0,
+      "contributors": [
+        "https://api.nordvpn.com/v1/servers?limit=99999"
+      ]
+    },
+    "vpn-pia-ipv4.txt": {
+      "lines": 1640,
+      "ipv4": 1640,
+      "ipv6": 0,
+      "invalidLines": 0,
+      "contributors": [
+        "https://serverlist.piaservers.net/vpninfo/servers/v6?format=json"
+      ],
+      "signature": "present"
+    },
+    "vpn-pia-ipv6.txt": {
+      "lines": 0,
+      "ipv4": 1640,
+      "ipv6": 0,
+      "invalidLines": 0,
+      "contributors": [
+        "https://serverlist.piaservers.net/vpninfo/servers/v6?format=json"
+      ],
+      "signature": "present"
+    },
     "vpn-ipv4.txt": {
       "lines": 14109,
       "ipv4": 14109,
@@ -161,7 +216,7 @@
       ]
     },
     "manifest.json": {
-      "generatedAt": "2026-11-08T15:03:20.238Z"
+      "generatedAt": "2026-11-08T15:22:45.383Z"
     }
   }
 }
