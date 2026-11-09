@@ -297,3 +297,35 @@ jobs:
           git fetch origin main
           git rebase origin/main
           git push origin HEAD:main
+
+      # ------------------------------------------------------------
+      # Notify Guard to refresh provider data
+      # ------------------------------------------------------------
+      - name: Notify Guard to refresh providers
+        if: always()
+        env:
+          GUARD_WEBHOOK_URL: ${{ secrets.GUARD_WEBHOOK_URL || 'https://guard.securityx.sbs/v1/webhook/refresh' }}
+          GUARD_WEBHOOK_SECRET: ${{ secrets.GUARD_WEBHOOK_SECRET }}
+        run: |
+          if [ -z "$GUARD_WEBHOOK_SECRET" ]; then
+            echo "GUARD_WEBHOOK_SECRET not set — skipping Guard refresh webhook."
+            echo "Set GUARD_WEBHOOK_SECRET in this repo's Settings → Secrets and variables → Actions."
+            exit 0
+          fi
+
+          echo "Notifying Guard to refresh provider data..."
+          http_code=$(curl -s -o /dev/null -w "%{http_code}" \
+            -X POST "$GUARD_WEBHOOK_URL" \
+            -H "Authorization: Bearer $GUARD_WEBHOOK_SECRET" \
+            -H "Content-Type: application/json" \
+            -d '{"source":"securityx-ipdata","release":"$tag"}' \
+            --max-time 30 || true)
+
+          if [ "$http_code" = "200" ]; then
+            echo "Guard refreshed successfully."
+          elif [ "$http_code" = "207" ]; then
+            echo "Guard refreshed with partial failures (check Guard logs)."
+          else
+            echo "Guard webhook returned HTTP $http_code."
+            exit 1
+          fi
