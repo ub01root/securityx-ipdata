@@ -37,14 +37,21 @@ const X4B_SOURCES = [
   { file: 'datacenter-ipv6.txt', url: `${X4B_RAW}/datacenter/ipv6.txt` },
 ];
 
+// Cloudflare publishes its anycast proxy/WARP egress ranges as plain CIDR
+// lists, updated whenever their anycast network changes. We fetch them
+// directly on every run so the guard always has fresh ranges without a
+// manual release.
+const CLOUDFLARE_SOURCES = [
+  { file: 'cloudflare-ipv4.txt', url: 'https://www.cloudflare.com/ips-v4' },
+  { file: 'cloudflare-ipv6.txt', url: 'https://www.cloudflare.com/ips-v6' },
+];
+
 // Human-curated lists, copied through verbatim. They have no upstream to
 // fetch, but they ship in the same release so the guard has exactly one
 // refresh URL per dataset. `minEntries` is a regression guard: a truncated or
 // mangled file fails the run instead of silently emptying a blocklist.
 const CURATED_FILES = [
   { src: 'curated/proxy-asns.txt', out: 'proxy-asns.txt', minEntries: 1, type: 'asn' },
-  { src: 'curated/cloudflare-ipv4.txt', out: 'cloudflare-ipv4.txt', minEntries: 1, type: 'cidr' },
-  { src: 'curated/cloudflare-ipv6.txt', out: 'cloudflare-ipv6.txt', minEntries: 1, type: 'cidr' },
 ];
 
 async function fetchText(url) {
@@ -300,6 +307,22 @@ async function main() {
     console.log(
       `${ipv4.size} ipv4 / ${ipv6.size} ipv6 ranges${invalid ? ` (${invalid} invalid skipped)` : ''}`,
     );
+  }
+
+  // Cloudflare publishes its proxy/WARP egress ranges as plain CIDR lists.
+  // Fetch directly so the guard always has fresh ranges without a manual release.
+  for (const source of CLOUDFLARE_SOURCES) {
+    process.stdout.write(`fetching ${source.url} ... `);
+    const { text, meta } = await fetchText(source.url);
+    const { lines, invalid } = cleanList(text);
+    const entry = bucket(source.file);
+    for (const line of lines) {
+      (classify(line) === 4 ? entry.ipv4 : entry.ipv6).add(line);
+    }
+    entry.invalid += invalid;
+    entry.contributors.push(meta.url);
+    manifest.sources.push({ ...meta, invalidLines: invalid });
+    console.log(`${lines.length} ranges${invalid ? ` (${invalid} invalid skipped)` : ''}`);
   }
 
   for (const [file, entry] of merged) {
