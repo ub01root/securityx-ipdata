@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-09T01:22:39.947Z",
+  "generatedAt": "2026-11-09T01:39:17.384Z",
   "generator": "guard-securityx sync.mjs",
   "sources": [
     {
@@ -45,17 +45,17 @@
     {
       "url": "https://api.nordvpn.com/v1/servers?limit=99999",
       "status": 200,
-      "bytes": 26551557,
+      "bytes": 26555297,
       "etag": null,
-      "lastModified": "Mon, 09 Nov 2026 01:22:41 GMT",
+      "lastModified": "Mon, 09 Nov 2026 01:39:18 GMT",
       "invalidLines": 0
     },
     {
       "url": "https://serverlist.piaservers.net/vpninfo/servers/v6?format=json",
       "status": 200,
-      "bytes": 183038,
+      "bytes": 183314,
       "etag": null,
-      "lastModified": "Mon, 09 Nov 2026 01:22:43 GMT",
+      "lastModified": "Mon, 09 Nov 2026 01:39:19 GMT",
       "invalidLines": 0,
       "signature": "present"
     },
@@ -64,7 +64,7 @@
       "status": 200,
       "bytes": 230,
       "etag": null,
-      "lastModified": "Sun, 08 Nov 2026 18:25:07 GMT",
+      "lastModified": "Sun, 08 Nov 2026 10:46:59 GMT",
       "invalidLines": 0
     },
     {
@@ -72,14 +72,14 @@
       "status": 200,
       "bytes": 104,
       "etag": null,
-      "lastModified": "Sun, 08 Nov 2026 21:01:21 GMT",
+      "lastModified": "Sun, 08 Nov 2026 22:28:17 GMT",
       "invalidLines": 0
     }
   ],
   "files": {
     "vpn-nordvpn-ipv4.txt": {
-      "lines": 7061,
-      "ipv4": 7061,
+      "lines": 7062,
+      "ipv4": 7062,
       "ipv6": 0,
       "invalidLines": 0,
       "contributors": [
@@ -88,7 +88,7 @@
     },
     "vpn-nordvpn-ipv6.txt": {
       "lines": 0,
-      "ipv4": 7061,
+      "ipv4": 7062,
       "ipv6": 0,
       "invalidLines": 0,
       "contributors": [
@@ -96,8 +96,8 @@
       ]
     },
     "vpn-pia-ipv4.txt": {
-      "lines": 1612,
-      "ipv4": 1612,
+      "lines": 1654,
+      "ipv4": 1654,
       "ipv6": 0,
       "invalidLines": 0,
       "contributors": [
@@ -107,7 +107,7 @@
     },
     "vpn-pia-ipv6.txt": {
       "lines": 0,
-      "ipv4": 1612,
+      "ipv4": 1654,
       "ipv6": 0,
       "invalidLines": 0,
       "contributors": [
@@ -250,7 +250,7 @@
       ]
     },
     "manifest.json": {
-      "generatedAt": "2026-11-09T01:22:39.947Z"
+      "generatedAt": "2026-11-09T01:39:17.384Z"
     }
   }
 }
