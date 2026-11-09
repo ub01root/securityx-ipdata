@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-09T01:15:02.928Z",
+  "generatedAt": "2026-11-09T01:22:39.947Z",
   "generator": "guard-securityx sync.mjs",
   "sources": [
     {
@@ -45,19 +45,35 @@
     {
       "url": "https://api.nordvpn.com/v1/servers?limit=99999",
       "status": 200,
-      "bytes": 26551622,
+      "bytes": 26551557,
       "etag": null,
-      "lastModified": "Mon, 09 Nov 2026 01:15:04 GMT",
+      "lastModified": "Mon, 09 Nov 2026 01:22:41 GMT",
       "invalidLines": 0
     },
     {
       "url": "https://serverlist.piaservers.net/vpninfo/servers/v6?format=json",
       "status": 200,
-      "bytes": 183372,
+      "bytes": 183038,
       "etag": null,
-      "lastModified": "Mon, 09 Nov 2026 01:15:05 GMT",
+      "lastModified": "Mon, 09 Nov 2026 01:22:43 GMT",
       "invalidLines": 0,
       "signature": "present"
+    },
+    {
+      "url": "https://www.cloudflare.com/ips-v4",
+      "status": 200,
+      "bytes": 230,
+      "etag": null,
+      "lastModified": "Sun, 08 Nov 2026 18:25:07 GMT",
+      "invalidLines": 0
+    },
+    {
+      "url": "https://www.cloudflare.com/ips-v6",
+      "status": 200,
+      "bytes": 104,
+      "etag": null,
+      "lastModified": "Sun, 08 Nov 2026 21:01:21 GMT",
+      "invalidLines": 0
     }
   ],
   "files": {
@@ -80,8 +96,8 @@
       ]
     },
     "vpn-pia-ipv4.txt": {
-      "lines": 1636,
-      "ipv4": 1636,
+      "lines": 1612,
+      "ipv4": 1612,
       "ipv6": 0,
       "invalidLines": 0,
       "contributors": [
@@ -91,7 +107,7 @@
     },
     "vpn-pia-ipv6.txt": {
       "lines": 0,
-      "ipv4": 1636,
+      "ipv4": 1612,
       "ipv6": 0,
       "invalidLines": 0,
       "contributors": [
@@ -209,26 +225,32 @@
         "https://github.com/NetworkCats/OpenProxyDB/releases/latest/download/proxy_blocks.csv#cdn.ipv6"
       ]
     },
+    "cloudflare-ipv4.txt": {
+      "lines": 15,
+      "ipv4": 15,
+      "ipv6": 0,
+      "invalidLines": 0,
+      "contributors": [
+        "https://www.cloudflare.com/ips-v4"
+      ]
+    },
+    "cloudflare-ipv6.txt": {
+      "lines": 7,
+      "ipv4": 0,
+      "ipv6": 7,
+      "invalidLines": 0,
+      "contributors": [
+        "https://www.cloudflare.com/ips-v6"
+      ]
+    },
     "proxy-asns.txt": {
       "lines": 5,
       "contributors": [
         "curated/proxy-asns.txt"
       ]
     },
-    "cloudflare-ipv4.txt": {
-      "lines": 15,
-      "contributors": [
-        "curated/cloudflare-ipv4.txt"
-      ]
-    },
-    "cloudflare-ipv6.txt": {
-      "lines": 7,
-      "contributors": [
-        "curated/cloudflare-ipv6.txt"
-      ]
-    },
     "manifest.json": {
-      "generatedAt": "2026-11-09T01:15:02.928Z"
+      "generatedAt": "2026-11-09T01:22:39.947Z"
     }
   }
 }
