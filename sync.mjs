@@ -42,7 +42,9 @@ const X4B_SOURCES = [
 // refresh URL per dataset. `minEntries` is a regression guard: a truncated or
 // mangled file fails the run instead of silently emptying a blocklist.
 const CURATED_FILES = [
-  { src: 'curated/proxy-asns.txt', out: 'proxy-asns.txt', minEntries: 1 },
+  { src: 'curated/proxy-asns.txt', out: 'proxy-asns.txt', minEntries: 1, type: 'asn' },
+  { src: 'curated/cloudflare-ipv4.txt', out: 'cloudflare-ipv4.txt', minEntries: 1, type: 'cidr' },
+  { src: 'curated/cloudflare-ipv6.txt', out: 'cloudflare-ipv6.txt', minEntries: 1, type: 'cidr' },
 ];
 
 async function fetchText(url) {
@@ -314,23 +316,23 @@ async function main() {
 
   for (const file of CURATED_FILES) {
     const text = await readFile(file.src, 'utf8');
-    // Keep the whole line, comment included: the consumer stores the note as
-    // the ASN's attribution, so stripping it would leave hits as bare "AS62610".
-    const seen = new Set();
     const kept = [];
+    const seen = new Set();
     for (const raw of text.split(/\r?\n/)) {
       const line = raw.trim();
       if (!line || line.startsWith('#')) continue;
-      const token = line.replace(/#.*$/, '').trim();
-      if (!/^AS\d{1,10}$/i.test(token)) continue;
-      const key = token.toUpperCase();
-      if (seen.has(key)) continue;
-      seen.add(key);
+      if (file.type === 'asn') {
+        const token = line.replace(/#.*$/, '').trim();
+        if (!/^AS\d{1,10}$/i.test(token)) continue;
+        const key = token.toUpperCase();
+        if (seen.has(key)) continue;
+        seen.add(key);
+      }
       kept.push(line);
     }
     if (kept.length < file.minEntries) {
       throw new Error(
-        `${file.src}: only ${kept.length} valid ASN entries (need >= ${file.minEntries})`,
+        `${file.src}: only ${kept.length} valid entries (need >= ${file.minEntries})`,
       );
     }
     await writeFile(join(OUT_DIR, file.out), `${kept.join('\n')}\n`);
