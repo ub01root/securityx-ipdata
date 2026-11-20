@@ -1,0 +1,256 @@
+{
+  "generatedAt": "2026-11-20T09:53:06.608Z",
+  "generator": "guard-securityx sync.mjs",
+  "sources": [
+    {
+      "url": "https://raw.githubusercontent.com/X4BNet/lists_vpn/main/output/vpn/ipv4.txt",
+      "status": 200,
+      "bytes": 181213,
+      "etag": "W/\"a65c1d21b1be3d870b9b79548fbc14aa7fc6596275f26636126e2ee6437acac7\"",
+      "lastModified": null,
+      "invalidLines": 0
+    },
+    {
+      "url": "https://raw.githubusercontent.com/X4BNet/lists_vpn/main/output/vpn/ipv6.txt",
+      "status": 200,
+      "bytes": 12420,
+      "etag": "W/\"b1c170a183277985f65b40ca0b2fd0064772f4b1f495bb14e8baa1564d3c4d62\"",
+      "lastModified": null,
+      "invalidLines": 0
+    },
+    {
+      "url": "https://raw.githubusercontent.com/X4BNet/lists_vpn/main/output/datacenter/ipv4.txt",
+      "status": 200,
+      "bytes": 720546,
+      "etag": "W/\"8e59bfa03c29dfbd54dfb4602cdcdc4cd5a794ce6a67aec2dc3cd58a13cf0f6a\"",
+      "lastModified": null,
+      "invalidLines": 0
+    },
+    {
+      "url": "https://raw.githubusercontent.com/X4BNet/lists_vpn/main/output/datacenter/ipv6.txt",
+      "status": 200,
+      "bytes": 159006,
+      "etag": "W/\"6f0b1e7a28016642972e6842b6a3ad4d3cd4c71249c28bee81b429cabe06fc67\"",
+      "lastModified": null,
+      "invalidLines": 0
+    },
+    {
+      "url": "https://github.com/NetworkCats/OpenProxyDB/releases/latest/download/proxy_blocks.csv",
+      "status": 200,
+      "bytes": 4453267,
+      "etag": "\"0x8DF46D811BE9F17\"",
+      "lastModified": "Fri, 20 Nov 2026 07:29:53 GMT",
+      "invalidLines": 0
+    },
+    {
+      "url": "https://api.nordvpn.com/v1/servers?limit=99999",
+      "status": 200,
+      "bytes": 26061762,
+      "etag": null,
+      "lastModified": "Fri, 20 Nov 2026 09:53:09 GMT",
+      "invalidLines": 0
+    },
+    {
+      "url": "https://serverlist.piaservers.net/vpninfo/servers/v6?format=json",
+      "status": 200,
+      "bytes": 182899,
+      "etag": null,
+      "lastModified": "Fri, 20 Nov 2026 09:53:09 GMT",
+      "invalidLines": 0,
+      "signature": "present"
+    },
+    {
+      "url": "https://www.cloudflare.com/ips-v4",
+      "status": 200,
+      "bytes": 230,
+      "etag": null,
+      "lastModified": "Fri, 20 Nov 2026 07:05:52 GMT",
+      "invalidLines": 0
+    },
+    {
+      "url": "https://www.cloudflare.com/ips-v6",
+      "status": 200,
+      "bytes": 104,
+      "etag": null,
+      "lastModified": "Thu, 19 Nov 2026 17:34:30 GMT",
+      "invalidLines": 0
+    }
+  ],
+  "files": {
+    "vpn-nordvpn-ipv4.txt": {
+      "lines": 6935,
+      "ipv4": 6935,
+      "ipv6": 0,
+      "invalidLines": 0,
+      "contributors": [
+        "https://api.nordvpn.com/v1/servers?limit=99999"
+      ]
+    },
+    "vpn-nordvpn-ipv6.txt": {
+      "lines": 0,
+      "ipv4": 6935,
+      "ipv6": 0,
+      "invalidLines": 0,
+      "contributors": [
+        "https://api.nordvpn.com/v1/servers?limit=99999"
+      ]
+    },
+    "vpn-pia-ipv4.txt": {
+      "lines": 1609,
+      "ipv4": 1609,
+      "ipv6": 0,
+      "invalidLines": 0,
+      "contributors": [
+        "https://serverlist.piaservers.net/vpninfo/servers/v6?format=json"
+      ],
+      "signature": "present"
+    },
+    "vpn-pia-ipv6.txt": {
+      "lines": 0,
+      "ipv4": 1609,
+      "ipv6": 0,
+      "invalidLines": 0,
+      "contributors": [
+        "https://serverlist.piaservers.net/vpninfo/servers/v6?format=json"
+      ],
+      "signature": "present"
+    },
+    "vpn-ipv4.txt": {
+      "lines": 14015,
+      "ipv4": 14015,
+      "ipv6": 0,
+      "invalidLines": 0,
+      "contributors": [
+        "https://raw.githubusercontent.com/X4BNet/lists_vpn/main/output/vpn/ipv4.txt",
+        "https://github.com/NetworkCats/OpenProxyDB/releases/latest/download/proxy_blocks.csv#vpn.ipv4"
+      ]
+    },
+    "vpn-ipv6.txt": {
+      "lines": 787,
+      "ipv4": 0,
+      "ipv6": 787,
+      "invalidLines": 0,
+      "contributors": [
+        "https://raw.githubusercontent.com/X4BNet/lists_vpn/main/output/vpn/ipv6.txt",
+        "https://github.com/NetworkCats/OpenProxyDB/releases/latest/download/proxy_blocks.csv#vpn.ipv6"
+      ]
+    },
+    "datacenter-ipv4.txt": {
+      "lines": 45966,
+      "ipv4": 45966,
+      "ipv6": 0,
+      "invalidLines": 0,
+      "contributors": [
+        "https://raw.githubusercontent.com/X4BNet/lists_vpn/main/output/datacenter/ipv4.txt"
+      ]
+    },
+    "datacenter-ipv6.txt": {
+      "lines": 8799,
+      "ipv4": 0,
+      "ipv6": 8799,
+      "invalidLines": 0,
+      "contributors": [
+        "https://raw.githubusercontent.com/X4BNet/lists_vpn/main/output/datacenter/ipv6.txt"
+      ]
+    },
+    "proxy-ipv4.txt": {
+      "lines": 49167,
+      "ipv4": 49167,
+      "ipv6": 0,
+      "invalidLines": 0,
+      "contributors": [
+        "https://github.com/NetworkCats/OpenProxyDB/releases/latest/download/proxy_blocks.csv#proxy.ipv4"
+      ]
+    },
+    "proxy-ipv6.txt": {
+      "lines": 9394,
+      "ipv4": 0,
+      "ipv6": 9394,
+      "invalidLines": 0,
+      "contributors": [
+        "https://github.com/NetworkCats/OpenProxyDB/releases/latest/download/proxy_blocks.csv#proxy.ipv6"
+      ]
+    },
+    "tor-ipv4.txt": {
+      "lines": 89,
+      "ipv4": 89,
+      "ipv6": 0,
+      "invalidLines": 0,
+      "contributors": [
+        "https://github.com/NetworkCats/OpenProxyDB/releases/latest/download/proxy_blocks.csv#tor.ipv4"
+      ]
+    },
+    "tor-ipv6.txt": {
+      "lines": 25,
+      "ipv4": 0,
+      "ipv6": 25,
+      "invalidLines": 0,
+      "contributors": [
+        "https://github.com/NetworkCats/OpenProxyDB/releases/latest/download/proxy_blocks.csv#tor.ipv6"
+      ]
+    },
+    "webhost-ipv4.txt": {
+      "lines": 23258,
+      "ipv4": 23258,
+      "ipv6": 0,
+      "invalidLines": 0,
+      "contributors": [
+        "https://github.com/NetworkCats/OpenProxyDB/releases/latest/download/proxy_blocks.csv#webhost.ipv4"
+      ]
+    },
+    "webhost-ipv6.txt": {
+      "lines": 3358,
+      "ipv4": 0,
+      "ipv6": 3358,
+      "invalidLines": 0,
+      "contributors": [
+        "https://github.com/NetworkCats/OpenProxyDB/releases/latest/download/proxy_blocks.csv#webhost.ipv6"
+      ]
+    },
+    "cdn-ipv4.txt": {
+      "lines": 195,
+      "ipv4": 195,
+      "ipv6": 0,
+      "invalidLines": 0,
+      "contributors": [
+        "https://github.com/NetworkCats/OpenProxyDB/releases/latest/download/proxy_blocks.csv#cdn.ipv4"
+      ]
+    },
+    "cdn-ipv6.txt": {
+      "lines": 41,
+      "ipv4": 0,
+      "ipv6": 41,
+      "invalidLines": 0,
+      "contributors": [
+        "https://github.com/NetworkCats/OpenProxyDB/releases/latest/download/proxy_blocks.csv#cdn.ipv6"
+      ]
+    },
+    "cloudflare-ipv4.txt": {
+      "lines": 15,
+      "ipv4": 15,
+      "ipv6": 0,
+      "invalidLines": 0,
+      "contributors": [
+        "https://www.cloudflare.com/ips-v4"
+      ]
+    },
+    "cloudflare-ipv6.txt": {
+      "lines": 7,
+      "ipv4": 0,
+      "ipv6": 7,
+      "invalidLines": 0,
+      "contributors": [
+        "https://www.cloudflare.com/ips-v6"
+      ]
+    },
+    "proxy-asns.txt": {
+      "lines": 5,
+      "contributors": [
+        "curated/proxy-asns.txt"
+      ]
+    },
+    "manifest.json": {
+      "generatedAt": "2026-11-20T09:53:06.608Z"
+    }
+  }
+}
